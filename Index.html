@@ -1,0 +1,1138 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bruno Medeiros | Fotógrafo Profissional</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #1a1a1a;
+            --secondary: #2a4365; /* Azul escuro */
+            --light: #f8f8f8;
+            --dark: #121212;
+            --gray: #777;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', 'Helvetica Neue', sans-serif;
+        }
+        
+        body {
+            background-color: var(--light);
+            color: var(--primary);
+            overflow-x: hidden;
+        }
+        
+        /* Tipografia */
+        h1, h2, h3, h4 {
+            font-weight: 700;
+            letter-spacing: 1px;
+            line-height: 1.2;
+        }
+        
+        /* Botões */
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: var(--secondary);
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            letter-spacing: 1px;
+            border-radius: 30px;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            background-color: #1e3a8a;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid var(--secondary);
+            color: var(--secondary);
+        }
+        
+        .btn-outline:hover {
+            background-color: var(--secondary);
+            color: white;
+        }
+        
+        /* Header Hero */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1493863641943-9b68992a8d07?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2058&q=80') no-repeat center center/cover;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 20px;
+            position: relative;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            opacity: 0;
+            animation: fadeIn 1s ease forwards 0.5s;
+        }
+        
+        .hero p {
+            font-size: 1.3rem;
+            max-width: 800px;
+            margin-bottom: 30px;
+            opacity: 0;
+            animation: fadeIn 1s ease forwards 1s;
+        }
+        
+        .hero .btn {
+            opacity: 0;
+            animation: fadeIn 1s ease forwards 1.5s;
+        }
+        
+        .scroll-down {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: white;
+            font-size: 1.5rem;
+            animation: bounce 2s infinite;
+        }
+        
+        /* Navegação */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 20px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            transition: all 0.5s ease;
+        }
+        
+        nav.scrolled {
+            background-color: rgba(0,0,0,0.9);
+            padding: 15px 50px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: white;
+            text-decoration: none;
+        }
+        
+        .logo span {
+            color: var(--secondary);
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 40px;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            letter-spacing: 1px;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-links a:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background: var(--secondary);
+            bottom: -5px;
+            left: 0;
+            transition: width 0.3s ease;
+        }
+        
+        .nav-links a:hover:after {
+            width: 100%;
+        }
+        
+        .menu-toggle {
+            display: none;
+            cursor: pointer;
+            color: white;
+            font-size: 1.5rem;
+        }
+        
+        /* Seções */
+        section {
+            padding: 100px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            position: relative;
+            display: inline-block;
+            padding-bottom: 15px;
+        }
+        
+        .section-title h2:after {
+            content: '';
+            position: absolute;
+            width: 70px;
+            height: 3px;
+            background: var(--secondary);
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        /* Sobre */
+        #sobre {
+            background-color: white;
+        }
+        
+        .about-container {
+            display: flex;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .about-img {
+            flex: 1;
+            padding-right: 50px;
+        }
+        
+        .about-img img {
+            width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        
+        .about-text {
+            flex: 1;
+        }
+        
+        .about-text h3 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: var(--dark);
+        }
+        
+        .about-text p {
+            margin-bottom: 20px;
+            color: var(--gray);
+            line-height: 1.8;
+        }
+        
+        .skills {
+            margin-top: 30px;
+        }
+        
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        
+        .skill-tag {
+            background-color: var(--secondary);
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+        
+        /* Portfólio */
+        #portfolio {
+            background-color: #f5f5f5;
+        }
+        
+        .portfolio-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .portfolio-filter {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 50px;
+            flex-wrap: wrap;
+        }
+        
+        .filter-btn {
+            background: none;
+            border: none;
+            padding: 10px 20px;
+            margin: 0 10px;
+            cursor: pointer;
+            font-weight: 600;
+            color: var(--gray);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .filter-btn:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background: var(--secondary);
+            bottom: 0;
+            left: 0;
+            transition: width 0.3s ease;
+        }
+        
+        .filter-btn.active, .filter-btn:hover {
+            color: var(--primary);
+        }
+        
+        .filter-btn.active:after, .filter-btn:hover:after {
+            width: 100%;
+        }
+        
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+        }
+        
+        .portfolio-item {
+            position: relative;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.5s ease;
+        }
+        
+        .portfolio-item img {
+            width: 100%;
+            height: 350px;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+        
+        .portfolio-item:hover img {
+            transform: scale(1.1);
+        }
+        
+        .portfolio-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.7);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: all 0.5s ease;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .portfolio-item:hover .portfolio-overlay {
+            opacity: 1;
+        }
+        
+        .portfolio-overlay h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            transform: translateY(20px);
+            transition: all 0.5s ease;
+        }
+        
+        .portfolio-overlay p {
+            margin-bottom: 20px;
+            transform: translateY(20px);
+            transition: all 0.5s ease;
+        }
+        
+        .portfolio-item:hover .portfolio-overlay h3,
+        .portfolio-item:hover .portfolio-overlay p {
+            transform: translateY(0);
+        }
+        
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.9);
+            overflow: auto;
+        }
+        
+        .modal-content {
+            margin: auto;
+            display: block;
+            max-width: 90%;
+            max-height: 90%;
+            margin-top: 5%;
+        }
+        
+        .close {
+            position: absolute;
+            top: 20px;
+            right: 35px;
+            color: white;
+            font-size: 40px;
+            font-weight: bold;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+        
+        .close:hover {
+            color: var(--secondary);
+        }
+        
+        /* Serviços */
+        #servicos {
+            background-color: white;
+        }
+        
+        .services-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .service-card {
+            background-color: white;
+            border-radius: 10px;
+            padding: 40px 30px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+        }
+        
+        .service-icon {
+            font-size: 3rem;
+            color: var(--secondary);
+            margin-bottom: 20px;
+        }
+        
+        .service-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+        
+        .service-card p {
+            color: var(--gray);
+            line-height: 1.8;
+        }
+        
+        /* Contato */
+        #contato {
+            background-color: var(--dark);
+            color: white;
+        }
+        
+        .contact-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+        }
+        
+        .contact-info {
+            flex: 1;
+            padding-right: 50px;
+        }
+        
+        .contact-info h3 {
+            font-size: 2rem;
+            margin-bottom: 30px;
+            color: white;
+        }
+        
+        .contact-info p {
+            margin-bottom: 30px;
+            line-height: 1.8;
+            color: #aaa;
+        }
+        
+        .contact-details {
+            margin-bottom: 40px;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            background-color: rgba(42, 67, 101, 0.1);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-right: 20px;
+            color: var(--secondary);
+            font-size: 1.2rem;
+        }
+        
+        .contact-text h4 {
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+        }
+        
+        .contact-text p {
+            margin: 0;
+            color: #aaa;
+        }
+        
+        .contact-form {
+            flex: 1;
+            background-color: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: 600;
+            color: var(--dark);
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 15px;
+            border: 1px solid #eee;
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .form-control:focus {
+            border-color: var(--secondary);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(42, 67, 101, 0.2);
+        }
+        
+        textarea.form-control {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        /* Rodapé */
+        footer {
+            background-color: var(--primary);
+            color: white;
+            padding: 50px 0 20px;
+            text-align: center;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        
+        .social-links a {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 50px;
+            height: 50px;
+            background-color: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            color: white;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+        
+        .social-links a:hover {
+            background-color: var(--secondary);
+            transform: translateY(-5px);
+        }
+        
+        .social-links .social-text {
+            display: flex;
+            align-items: center;
+            background-color: rgba(255,255,255,0.1);
+            border-radius: 30px;
+            padding: 0 20px;
+            transition: all 0.3s ease;
+        }
+        
+        .social-links .social-text:hover {
+            background-color: var(--secondary);
+            transform: translateY(-5px);
+        }
+        
+        .social-links .social-text span {
+            margin-left: 10px;
+            font-size: 1rem;
+        }
+        
+        .instagram-btn {
+            background-color: #E1306C;
+        }
+        
+        .facebook-btn {
+            background-color: #3b5998;
+        }
+        
+        .whatsapp-btn {
+            background-color: #25D366;
+        }
+        
+        .copyright {
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+        
+        /* Animações */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0) translateX(-50%); }
+            40% { transform: translateY(-20px) translateX(-50%); }
+            60% { transform: translateY(-10px) translateX(-50%); }
+        }
+        
+        /* Responsivo */
+        @media (max-width: 992px) {
+            .about-container {
+                flex-direction: column;
+            }
+            
+            .about-img {
+                padding-right: 0;
+                margin-bottom: 50px;
+                width: 80%;
+            }
+            
+            .contact-container {
+                flex-direction: column;
+            }
+            
+            .contact-info {
+                padding-right: 0;
+                margin-bottom: 50px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+                z-index: 1001;
+            }
+            
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 100%;
+                height: 100vh;
+                background-color: var(--dark);
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                transition: all 0.5s ease;
+                z-index: 1000;
+            }
+            
+            .nav-links.active {
+                right: 0;
+            }
+            
+            .nav-links li {
+                margin: 20px 0;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .portfolio-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .social-links .social-text {
+                width: 100%;
+                max-width: 250px;
+                justify-content: center;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            section {
+                padding: 70px 0;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            nav {
+                padding: 15px 20px;
+            }
+            
+            nav.scrolled {
+                padding: 10px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navegação -->
+    <nav id="navbar">
+        <a href="#" class="logo">BRUNO<span>MEDEIROS</span></a>
+        <div class="menu-toggle" id="mobile-menu">
+            <i class="fas fa-bars"></i>
+        </div>
+        <ul class="nav-links" id="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#sobre">Sobre</a></li>
+            <li><a href="#portfolio">Portfólio</a></li>
+            <li><a href="#servicos">Serviços</a></li>
+            <li><a href="#contato">Contato</a></li>
+        </ul>
+    </nav>
+    
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <h1>Ensaios e Fotografias para eventos em Bagé e Região</h1>
+        <p>Fotografia Profissional com os melhores orçamentos da região!</p>
+        <a href="#portfolio" class="btn">Ver Portfólio</a>
+        <a href="#contato" class="scroll-down"><i class="fas fa-chevron-down"></i></a>
+    </section>
+    
+    <!-- Sobre -->
+    <section id="sobre">
+        <div class="section-title">
+            <h2>Sobre Mim</h2>
+        </div>
+        <div class="about-container">
+            <div class="about-img">
+                <img src="https://i.ibb.co/gM1qfkVY/483004880-18157755463356052-2272306436397327402-n.jpg" alt="Bruno Medeiros - Fotógrafo">
+            </div>
+            <div class="about-text">
+                <h3>Bruno Medeiros - Fotógrafo Profissional</h3>
+                <p>Bruno Medeiros é fotógrafo profissional com ampla experiência no ramo e um olhar sensível voltado à arte de contar histórias por meio da imagem. Formado em Design, atua também como educador, tendo ministrado oficinas e um curso de fotografia na cidade de Bagé, onde compartilhou seu conhecimento com novos talentos da área. Sua abordagem combina técnica, criatividade e emoção, resultando em registros autênticos e memoráveis.</p>
+                <p>Além da atuação como fotógrafo, Bruno é Coordenador de Comunicações no IECE-RS (Instituto Sócio-Educacional e Cultural da Região Sul), onde integra sua expertise visual aos projetos de impacto social e cultural desenvolvidos pela instituição.</p>
+                
+                <div class="skills">
+                    <h4>Áreas de Atuação:</h4>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Fotógrafo</span>
+                        <span class="skill-tag">Design</span>
+                        <span class="skill-tag">Editor</span>
+                        <span class="skill-tag">Marketing</span>
+                        <span class="skill-tag">Gestor de Redes Sociais</span>
+                    </div>
+                </div>
+                
+                <a href="#contato" class="btn btn-outline" style="margin-top: 30px;">Entre em Contato</a>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Portfólio -->
+    <section id="portfolio">
+        <div class="section-title">
+            <h2>Meu Portfólio</h2>
+        </div>
+        <div class="portfolio-container">
+            <div class="portfolio-filter">
+                <button class="filter-btn active" data-filter="all">Todos</button>
+                <button class="filter-btn" data-filter="casamentos">Casamentos</button>
+                <button class="filter-btn" data-filter="retratos">Retratos</button>
+                <button class="filter-btn" data-filter="comercial">Comercial</button>
+                <button class="filter-btn" data-filter="eventos">Eventos</button>
+            </div>
+            <div class="portfolio-grid">
+                <!-- 
+                    ÁREA PARA ADICIONAR NOVAS FOTOS 
+                    Formato:
+                    <div class="portfolio-item" data-category="CATEGORIA">
+                        <img src="URL_DA_IMAGEM" alt="DESCRIÇÃO">
+                        <div class="portfolio-overlay">
+                            <h3>TÍTULO DA FOTO</h3>
+                            <p>LEGENDA DA FOTO</p>
+                            <button class="btn btn-outline view-btn" data-img="URL_DA_IMAGEM" data-title="TÍTULO DA FOTO" data-caption="LEGENDA DA FOTO">Ampliar</button>
+                        </div>
+                    </div>
+                -->
+                
+                <!-- Item 1 -->
+                <div class="portfolio-item" data-category="casamentos">
+                    <img src="https://images.unsplash.com/photo-1523438885200-e635ba2c371e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80" alt="Casamento">
+                    <div class="portfolio-overlay">
+                        <h3>Casamento na Praia</h3>
+                        <p>Cerimônia ao pôr do sol em Maresias</p>
+                        <button class="btn btn-outline view-btn" data-img="https://images.unsplash.com/photo-1523438885200-e635ba2c371e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80" data-title="Casamento na Praia" data-caption="Cerimônia ao pôr do sol em Maresias">Ampliar</button>
+                    </div>
+                </div>
+                
+                <!-- Item 2 -->
+                <div class="portfolio-item" data-category="retratos">
+                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80" alt="Retrato Masculino">
+                    <div class="portfolio-overlay">
+                        <h3>Retrato Editorial</h3>
+                        <p>Sessão para revista de moda</p>
+                        <button class="btn btn-outline view-btn" data-img="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80" data-title="Retrato Editorial" data-caption="Sessão para revista de moda">Ampliar</button>
+                    </div>
+                </div>
+                
+                <!-- Item 3 -->
+                <div class="portfolio-item" data-category="comercial">
+                    <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Produto">
+                    <div class="portfolio-overlay">
+                        <h3>Fotografia de Produto</h3>
+                        <p>Campanha para marca de relógios</p>
+                        <button class="btn btn-outline view-btn" data-img="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" data-title="Fotografia de Produto" data-caption="Campanha para marca de relógios">Ampliar</button>
+                    </div>
+                </div>
+                
+                <!-- Item 4 -->
+                <div class="portfolio-item" data-category="eventos">
+                    <img src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Evento">
+                    <div class="portfolio-overlay">
+                        <h3>Show ao Vivo</h3>
+                        <p>Festival de música em Bagé</p>
+                        <button class="btn btn-outline view-btn" data-img="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" data-title="Show ao Vivo" data-caption="Festival de música em Bagé">Ampliar</button>
+                    </div>
+                </div>
+                
+                <!-- Item 5 -->
+                <div class="portfolio-item" data-category="casamentos">
+                    <img src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Casamento">
+                    <div class="portfolio-overlay">
+                        <h3>Primeiro Beijo</h3>
+                        <p>Momento especial capturado</p>
+                        <button class="btn btn-outline view-btn" data-img="https://images.unsplash.com/photo-1519225421980-715cb0215aed?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" data-title="Primeiro Beijo" data-caption="Momento especial capturado">Ampliar</button>
+                    </div>
+                </div>
+                
+                <!-- Item 6 -->
+                <div class="portfolio-item" data-category="retratos">
+                    <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80" alt="Retrato Feminino">
+                    <div class="portfolio-overlay">
+                        <h3>Retrato em Preto e Branco</h3>
+                        <p>Sessão de estúdio</p>
+                        <button class="btn btn-outline view-btn" data-img="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80" data-title="Retrato em Preto e Branco" data-caption="Sessão de estúdio">Ampliar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Serviços -->
+    <section id="servicos">
+        <div class="section-title">
+            <h2>Meus Serviços</h2>
+        </div>
+        <div class="services-container">
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-ring"></i>
+                </div>
+                <h3>Casamentos</h3>
+                <p>Documentação completa do seu grande dia, desde os preparativos até a festa, com cobertura profissional e edição cuidadosa.</p>
+            </div>
+            
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-user-tie"></i>
+                </div>
+                <h3>Retratos Profissionais</h3>
+                <p>Sessões individuais ou em grupo, em estúdio ou locação, para redes sociais, currículos ou presentear.</p>
+            </div>
+            
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-briefcase"></i>
+                </div>
+                <h3>Fotografia Comercial</h3>
+                <p>Fotografia de produtos, serviços e ambientes para campanhas publicitárias, catálogos e sites.</p>
+            </div>
+            
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-home"></i>
+                </div>
+                <h3>Books Familiares</h3>
+                <p>Registro emocionante da sua família em momentos descontraídos e cheios de amor.</p>
+            </div>
+            
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-calendar-alt"></i>
+                </div>
+                <h3>Eventos no Geral</h3>
+                <p>Cobertura completa de festas, formaturas, shows e outros eventos especiais.</p>
+            </div>
+            
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-camera"></i>
+                </div>
+                <h3>Edição de Imagens</h3>
+                <p>Serviço profissional de edição e tratamento de imagens para valorizar suas fotos.</p>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Contato -->
+    <section id="contato">
+        <div class="section-title">
+            <h2>Entre em Contato</h2>
+        </div>
+        <div class="contact-container">
+            <div class="contact-info">
+                <h3>Vamos Conversar</h3>
+                <p>Estou disponível para projetos freelance e colaborações criativas. Entre em contato para discutirmos suas ideias e como posso ajudar a transformá-las em imagens incríveis.</p>
+                
+                <div class="contact-details">
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="contact-text">
+                            <h4>Localização</h4>
+                            <p>Bagé, Rio Grande do Sul, Brasil</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="contact-text">
+                            <h4>Email</h4>
+                            <p>brunomedeiros221@gmail.com</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div class="contact-text">
+                            <h4>Telefone</h4>
+                            <p>+55 53 9114-4118</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="contact-form">
+                <form id="form-contato" action="https://formspree.io/f/gabrielferreiralemosbagers@gmail.com" method="POST">
+                    <div class="form-group">
+                        <label for="nome">Nome</label>
+                        <input type="text" id="nome" name="nome" class="form-control" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" class="form-control" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="assunto">Assunto</label>
+                        <input type="text" id="assunto" name="assunto" class="form-control" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="mensagem">Mensagem</label>
+                        <textarea id="mensagem" name="mensagem" class="form-control" required></textarea>
+                    </div>
+                    
+                    <button type="submit" class="btn">Enviar Mensagem</button>
+                </form>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Rodapé -->
+    <footer>
+        <div class="footer-content">
+            <div class="social-links">
+                <a href="https://www.facebook.com/brunomedeiros1995?locale=pt_BR" class="facebook-btn" target="_blank">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+                <a href="https://www.instagram.com/brunormedeiiros/" class="instagram-btn" target="_blank">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="https://wa.me/555391144118" class="whatsapp-btn" target="_blank">
+                    <i class="fab fa-whatsapp"></i>
+                </a>
+                <a href="https://www.instagram.com/iece.rs/" class="social-text instagram-btn" target="_blank">
+                    <img src="https://i.ibb.co/s96sXTf2/Quadrado-Branco.png" alt="" style="width: 35px; height: 35px; border-radius: 0px;"
+                    <span></span>
+                </a>
+            </div>
+            <p class="copyright">© 2025 Bruno Medeiros Fotografia. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+    
+    <!-- Modal -->
+    <div id="imageModal" class="modal">
+        <span class="close">&times;</span>
+        <img class="modal-content" id="modalImage">
+        <div id="caption" style="color: white; text-align: center; margin-top: 20px;"></div>
+    </div>
+    
+    <script>
+        // Menu Mobile
+        const menuToggle = document.getElementById('mobile-menu');
+        const navLinks = document.getElementById('nav-links');
+        
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+        
+        // Fechar menu ao clicar em um link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+            });
+        });
+        
+        // Navbar scroll
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 100) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+        
+        // Filtro do portfólio
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const portfolioItems = document.querySelectorAll('.portfolio-item');
+        
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Remove active class from all buttons
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                // Add active class to clicked button
+                button.classList.add('active');
+                
+                const filterValue = button.getAttribute('data-filter');
+                
+                portfolioItems.forEach(item => {
+                    if (filterValue === 'all' || item.getAttribute('data-category') === filterValue) {
+                        item.style.display = 'block';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+            });
+        });
+        
+        // Modal para visualização de imagens
+        const modal = document.getElementById('imageModal');
+        const modalImg = document.getElementById('modalImage');
+        const captionText = document.getElementById('caption');
+        const closeBtn = document.getElementsByClassName('close')[0];
+        
+        document.querySelectorAll('.view-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                modal.style.display = 'block';
+                modalImg.src = this.getAttribute('data-img');
+                captionText.innerHTML = `<strong>${this.getAttribute('data-title')}</strong><br>${this.getAttribute('data-caption')}`;
+            });
+        });
+        
+        closeBtn.addEventListener('click', function() {
+            modal.style.display = 'none';
+        });
+        
+        window.addEventListener('click', function(event) {
+            if (event.target == modal) {
+                modal.style.display = 'none';
+            }
+        });
+        
+        // Form submission
+        const contactForm = document.getElementById('form-contato');
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Simulação de envio - em produção, isso seria substituído por AJAX ou o formspree cuidaria disso
+            alert('Mensagem enviada com sucesso! Entrarei em contato em breve.');
+            this.reset();
+            
+            // Se estiver usando formspree, descomente a linha abaixo e remova a simulação acima
+            // this.submit();
+        });
+    </script>
+</body>
+</html>
